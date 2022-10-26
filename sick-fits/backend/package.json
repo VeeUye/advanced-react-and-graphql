@@ -11,6 +11,15 @@
   "eslintConfig": {
     "extends": "wesbos/typescript.js",
     "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "trailingComma": "es5",
+          "singleQuote": true,
+          "printWidth": 120,
+          "tabWidth": 2
+        }
+      ],
       "@typescript-eslint/no-unsafe-assignment": 0
     }
   },
