@@ -1,37 +1,45 @@
-import { func } from 'prop-types';
-import { useState } from 'react';
+import { func } from "prop-types";
+import { useEffect, useState } from "react";
 
 export default function useForm(initial = {}) {
-    const [inputs, setInputs] = useState(initial);
+  const [inputs, setInputs] = useState(initial);
+  const initialValues = Object.values(initial).join("");
 
-    function handleChange(e) {
-        let { value, name, type } = e.target;
+  useEffect(() => {
+    // This function runs when the things we are watching change
+    setInputs(initial);
+  }, [initialValues]);
 
-        if (type === 'number') {
-            value = parseInt(value);
-        }
+  function handleChange(e) {
+    let { value, name, type } = e.target;
 
-        if (type === 'file') {
-            [value] = e.target.files;
-        }
-
-        setInputs({ ...inputs, [name]: value });
+    if (type === "number") {
+      value = parseInt(value);
     }
 
-    function resetForm() {
-        setInputs(initial);
+    if (type === "file") {
+      [value] = e.target.files;
     }
 
-    function clearForm() {
-        const blankState = Object.fromEntries(Object.entries(inputs).map(([key, value]) => [key, '']));
+    setInputs({ ...inputs, [name]: value });
+  }
 
-        setInputs(blankState);
-    }
+  function resetForm() {
+    setInputs(initial);
+  }
 
-    return {
-        inputs,
-        handleChange,
-        resetForm,
-        clearForm,
-    };
+  function clearForm() {
+    const blankState = Object.fromEntries(
+      Object.entries(inputs).map(([key, value]) => [key, ""])
+    );
+
+    setInputs(blankState);
+  }
+
+  return {
+    inputs,
+    handleChange,
+    resetForm,
+    clearForm,
+  };
 }
