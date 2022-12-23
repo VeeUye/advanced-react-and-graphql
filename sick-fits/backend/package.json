@@ -2,26 +2,11 @@
   "name": "sick-fits-backend",
   "version": "2.0.0",
   "private": true,
-  "author": "Wes Bos",
+  "author": "Vee Uye",
   "license": "MIT",
   "scripts": {
     "dev": "keystone-next",
     "seed-data": "keystone-next --seed-data"
-  },
-  "eslintConfig": {
-    "extends": "wesbos/typescript.js",
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "trailingComma": "es5",
-          "singleQuote": true,
-          "printWidth": 120,
-          "tabWidth": 2
-        }
-      ],
-      "@typescript-eslint/no-unsafe-assignment": 0
-    }
   },
   "babel": {
     "presets": [

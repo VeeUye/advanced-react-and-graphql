@@ -1,5 +1,5 @@
-import { integer, relationship, select, text } from '@keystone-next/fields';
-import { list } from '@keystone-next/keystone/schema';
+import { integer, relationship, select, text } from '@keystone-next/fields'
+import { list } from '@keystone-next/keystone/schema'
 
 export const Product = list({
   // TODO
@@ -35,4 +35,4 @@ export const Product = list({
     price: integer(),
     // TODO:  photo
   },
-});
+})
