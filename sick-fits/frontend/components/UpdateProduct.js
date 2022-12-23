@@ -1,9 +1,9 @@
-import gql from "graphql-tag";
-import { useMutation, useQuery } from "@apollo/client";
-import Form from "./styles/Form";
-import Router from "next/router";
-import DisplayError from "./ErrorMessage";
-import useForm from "../lib/useForm";
+import React from 'react'
+import gql from 'graphql-tag'
+import { useMutation, useQuery } from '@apollo/client'
+import Form from './styles/Form'
+import DisplayError from './ErrorMessage'
+import useForm from '../lib/useForm'
 
 const SINGLE_PRODUCT_QUERY = gql`
   query SINGLE_PRODUCT_QUERY($id: ID!) {
@@ -14,7 +14,7 @@ const SINGLE_PRODUCT_QUERY = gql`
       price
     }
   }
-`;
+`
 
 const UPDATE_PRODUCT_MUTATION = gql`
   mutation UPDATE_PRODUCT_MUTATION(
@@ -33,34 +33,34 @@ const UPDATE_PRODUCT_MUTATION = gql`
       price
     }
   }
-`;
+`
 
 export default function UpdateProduct({ id }) {
-  //TODO
+  // TODO
   // 1. We need to get the existing products
 
   const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: { id },
-  });
+  })
 
-  //TODO
+  // TODO
   // 2. We need to get the mutation to update the product
 
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
-  ] = useMutation(UPDATE_PRODUCT_MUTATION);
+  ] = useMutation(UPDATE_PRODUCT_MUTATION)
 
   // TODO 2.5 Create some state for the form inputs
 
-  const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product);
-  console.log(inputs);
-  if (loading) return <p>loading...</p>;
+  const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product)
+  console.log(inputs)
+  if (loading) return <p>loading...</p>
   // TODO 3. We need the form to handle the updates.
   return (
     <Form
       onSubmit={async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const res = await updateProduct({
           variables: {
             id,
@@ -68,8 +68,8 @@ export default function UpdateProduct({ id }) {
             description: inputs.description,
             price: inputs.price,
           },
-        }).catch(console.error);
-        console.log(res);
+        }).catch(console.error)
+        console.log(res)
         // TODO handle submit
         // Submit the input fields to the backend
         // const res = await createProduct();
@@ -117,5 +117,5 @@ export default function UpdateProduct({ id }) {
         <button type="submit">Update Product</button>
       </fieldset>
     </Form>
-  );
+  )
 }

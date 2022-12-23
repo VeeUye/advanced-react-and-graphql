@@ -1,10 +1,11 @@
-import Head from "next/head";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/client";
-import Link from "next/link";
-import PaginationStyles from "./styles/PaginationStyles";
-import DisplayError from "./ErrorMessage";
-import { perPage } from "../config";
+import Head from 'next/head'
+import React from 'react'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/client'
+import Link from 'next/link'
+import PaginationStyles from './styles/PaginationStyles'
+import DisplayError from './ErrorMessage'
+import { perPage } from '../config'
 
 export const PAGINATION_QUERY = gql`
   query PAGINATION_QUERY {
@@ -12,16 +13,16 @@ export const PAGINATION_QUERY = gql`
       count
     }
   }
-`;
+`
 
 export default function Pagination({ page }) {
-  const { error, loading, data } = useQuery(PAGINATION_QUERY);
-  if (loading) return "Loading...";
-  if (error) return <DisplayError error={error} />;
-  const { count } = data._allProductsMeta;
-  const pageCount = Math.ceil(count / perPage);
+  const { error, loading, data } = useQuery(PAGINATION_QUERY)
+  if (loading) return 'Loading...'
+  if (error) return <DisplayError error={error} />
+  const { count } = data._allProductsMeta
+  const pageCount = Math.ceil(count / perPage)
 
-  console.log(data);
+  console.log(data)
 
   return (
     <PaginationStyles>
@@ -31,15 +32,15 @@ export default function Pagination({ page }) {
         </title>
       </Head>
       <Link href={`/products/${page - 1}`}>
-        <a aria-disabled={page <= 1}>{"\u2190 Prev"}</a>
+        <a aria-disabled={page <= 1}>{'\u2190 Prev'}</a>
       </Link>
       <p>
         Page {page} of {pageCount}
       </p>
       <p>{count} Items Total</p>
       <Link href={`/products/${page + 1}`}>
-        <a aria-disabled={page >= pageCount}>{"Next \u2192"}</a>
+        <a aria-disabled={page >= pageCount}>{'Next \u2192'}</a>
       </Link>
     </PaginationStyles>
-  );
+  )
 }

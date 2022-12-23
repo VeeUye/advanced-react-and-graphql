@@ -1,8 +1,9 @@
-import Form from "./styles/Form";
-import Error from "./ErrorMessage";
-import useForm from "../lib/useForm";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
+import React from 'react'
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/client'
+import Form from './styles/Form'
+import Error from './ErrorMessage'
+import useForm from '../lib/useForm'
 
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
@@ -11,12 +12,12 @@ const REQUEST_RESET_MUTATION = gql`
       message
     }
   }
-`;
+`
 
 export default function RequestReset() {
   const { inputs, handleChange, resetForm } = useForm({
-    email: "",
-  });
+    email: '',
+  })
 
   const [signup, { data, loading, error }] = useMutation(
     REQUEST_RESET_MUTATION,
@@ -25,24 +26,16 @@ export default function RequestReset() {
       // refetch the currently logged in user
       // refetchQueries: [{ query: CURRENT_USER_QUERY }],
     }
-  );
+  )
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    console.log(inputs);
-    const res = await signup().catch(console.error);
-    console.log(res);
-    console.log({ data, loading, error });
-    resetForm();
-    // send the email and password to the graphql api
+    e.preventDefault()
+    console.log(inputs)
+    const res = await signup().catch(console.error)
+    console.log(res)
+    console.log({ data, loading, error })
+    resetForm()
   }
-  // const error =
-  //   data?.authenticateUserWithPassword.__typename ===
-  //   "UserAuthenticationWithPasswordFailure"
-  //     ? data?.authenticateUserWithPassword
-  //     : undefined;
-  //
-  // console.log(error);
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>
@@ -68,5 +61,5 @@ export default function RequestReset() {
         <button type="submit">Request Reset</button>
       </fieldset>
     </Form>
-  );
+  )
 }

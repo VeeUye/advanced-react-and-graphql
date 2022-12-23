@@ -1,9 +1,10 @@
-import Form from "./styles/Form";
-import Error from "./ErrorMessage";
-import useForm from "../lib/useForm";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
-import { CURRENT_USER_QUERY } from "./User";
+import React from 'react'
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/client'
+import Form from './styles/Form'
+import Error from './ErrorMessage'
+import useForm from '../lib/useForm'
+import { CURRENT_USER_QUERY } from './User'
 
 const SIGNIN_MUTATION = gql`
   mutation SIGN_IN_MUTATION($email: String!, $password: String!) {
@@ -21,35 +22,35 @@ const SIGNIN_MUTATION = gql`
       }
     }
   }
-`;
+`
 
 export default function SignIn() {
   const { inputs, handleChange, resetForm } = useForm({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: '',
+  })
 
   const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
     variables: inputs,
     // refetch the currently logged in user
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
-  });
+  })
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    console.log(inputs);
-    const res = await signin();
-    console.log(res);
-    resetForm();
+    e.preventDefault()
+    console.log(inputs)
+    const res = await signin()
+    console.log(res)
+    resetForm()
     // send the email and password to the graphql api
   }
   const error =
     data?.authenticateUserWithPassword.__typename ===
-    "UserAuthenticationWithPasswordFailure"
+    'UserAuthenticationWithPasswordFailure'
       ? data?.authenticateUserWithPassword
-      : undefined;
+      : undefined
 
-  console.log(error);
+  console.log(error)
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>
@@ -82,5 +83,5 @@ export default function SignIn() {
         <button type="submit">Sign In!</button>
       </fieldset>
     </Form>
-  );
+  )
 }

@@ -1,9 +1,10 @@
-import Link from "next/link";
-import formatMoney from "../lib/FormatMoney";
-import DeleteProduct from "./DeleteProduct";
-import ItemStyles from "./styles/ItemStyles";
-import Title from "./styles/Title";
-import PriceTag from "./styles/PriceTag";
+import React from 'react'
+import Link from 'next/link'
+import formatMoney from '../lib/FormatMoney'
+import DeleteProduct from './DeleteProduct'
+import ItemStyles from './styles/ItemStyles'
+import Title from './styles/Title'
+import PriceTag from './styles/PriceTag'
 
 export default function Product({ product }) {
   return (
@@ -20,7 +21,7 @@ export default function Product({ product }) {
       <div className="buttonList">
         <Link
           href={{
-            pathname: "update",
+            pathname: 'update',
             query: {
               id: product.id,
             },
@@ -31,5 +32,5 @@ export default function Product({ product }) {
         <DeleteProduct id={product.id}>Delete</DeleteProduct>
       </div>
     </ItemStyles>
-  );
+  )
 }

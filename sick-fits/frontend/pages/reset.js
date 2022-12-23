@@ -1,5 +1,6 @@
-import RequestReset from "../components/RequestReset";
-import Reset from "../components/Reset";
+import React from 'react'
+import RequestReset from '../components/RequestReset'
+import Reset from '../components/Reset'
 
 export default function ResetPage({ query }) {
   if (!query?.token) {
@@ -8,14 +9,14 @@ export default function ResetPage({ query }) {
         <p>Sorry, you must supply a token</p>
         <RequestReset />
       </div>
-    );
+    )
   }
-  console.log(query, "<------query");
-  console.log(query.token, "<----token");
+  console.log(query, '<------query')
+  console.log(query.token, '<----token')
   return (
     <div>
       <p>Reset Your Password {query.token}</p>
       <Reset token={query.token} />
     </div>
-  );
+  )
 }

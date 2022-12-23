@@ -1,8 +1,8 @@
-import casual from 'casual';
-import { PAGINATION_QUERY } from '../components/Pagination';
+import casual from 'casual'
+import { PAGINATION_QUERY } from '../components/Pagination'
 
 // seed it so we get consistent results
-casual.seed(777);
+casual.seed(777)
 
 const fakeItem = () => ({
   // __typename: 'Item',
@@ -18,7 +18,7 @@ const fakeItem = () => ({
   },
   name: 'dogs are best',
   description: 'dogs',
-});
+})
 
 const fakeUser = (overrides) => ({
   __typename: 'User',
@@ -29,7 +29,7 @@ const fakeUser = (overrides) => ({
   orders: [],
   cart: [],
   ...overrides,
-});
+})
 
 const fakeOrderItem = () => ({
   __typename: 'OrderItem',
@@ -41,7 +41,7 @@ const fakeOrderItem = () => ({
   price: 4234,
   quantity: 1,
   description: casual.words(),
-});
+})
 
 const fakeOrder = () => ({
   __typename: 'Order',
@@ -51,7 +51,7 @@ const fakeOrder = () => ({
   items: [fakeOrderItem(), fakeOrderItem()],
   createdAt: '2022-12-11T20:16:13.797Z',
   user: fakeUser(),
-});
+})
 
 const fakeCartItem = (overrides) => ({
   __typename: 'CartItem',
@@ -60,28 +60,28 @@ const fakeCartItem = (overrides) => ({
   product: fakeItem(),
   user: fakeUser(),
   ...overrides,
-});
+})
 
 // Fake LocalStorage
 class LocalStorageMock {
   constructor() {
-    this.store = {};
+    this.store = {}
   }
 
   clear() {
-    this.store = {};
+    this.store = {}
   }
 
   getItem(key) {
-    return this.store[key] || null;
+    return this.store[key] || null
   }
 
   setItem(key, value) {
-    this.store[key] = value.toString();
+    this.store[key] = value.toString()
   }
 
   removeItem(key) {
-    delete this.store[key];
+    delete this.store[key]
   }
 }
 
@@ -104,7 +104,7 @@ function makePaginationMocksFor(length) {
         },
       },
     },
-  ];
+  ]
 }
 
 export {
@@ -115,4 +115,4 @@ export {
   fakeCartItem,
   fakeOrder,
   fakeOrderItem,
-};
+}

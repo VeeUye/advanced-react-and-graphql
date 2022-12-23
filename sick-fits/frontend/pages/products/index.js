@@ -1,10 +1,11 @@
-import Products from "../../components/Products";
-import Pagination from "../../components/Pagination";
-import { useRouter } from "next/router";
+import React from 'react'
+import { useRouter } from 'next/router'
+import Products from '../../components/Products'
+import Pagination from '../../components/Pagination'
 
 function OrderPage() {
-  const { query } = useRouter();
-  const page = parseInt(query.page);
+  const { query } = useRouter()
+  const page = parseInt(query.page)
 
   return (
     <div>
@@ -12,7 +13,7 @@ function OrderPage() {
       <Products page={page || 1} />
       <Pagination page={page || 1} />
     </div>
-  );
+  )
 }
 
-export default OrderPage;
+export default OrderPage
