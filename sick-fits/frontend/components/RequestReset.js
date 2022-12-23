@@ -3,7 +3,6 @@ import Error from "./ErrorMessage";
 import useForm from "../lib/useForm";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
-import { CURRENT_USER_QUERY } from "./User";
 
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {

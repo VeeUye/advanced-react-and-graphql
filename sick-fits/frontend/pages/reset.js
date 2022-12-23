@@ -10,7 +10,8 @@ export default function ResetPage({ query }) {
       </div>
     );
   }
-  console.log(query.token);
+  console.log(query, "<------query");
+  console.log(query.token, "<----token");
   return (
     <div>
       <p>Reset Your Password {query.token}</p>
