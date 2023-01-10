@@ -12,6 +12,7 @@ import { insertSeedData } from './seed-data'
 import 'dotenv/config'
 import { sendPasswordResetEmail } from './lib/mail'
 import { CartItem } from './schemas/CartItem'
+import { extendGraphqlSchema } from './mutations'
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial'
@@ -62,6 +63,7 @@ export default withAuth(
       ProductImage,
       CartItem,
     }),
+    extendGraphqlSchema,
     ui: {
       // show ui only for people who pass this test
       isAccessAllowed: ({ session }) => !!session?.data,
