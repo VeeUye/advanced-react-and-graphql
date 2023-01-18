@@ -1,18 +1,15 @@
 import { graphQLSchemaExtension } from '@keystone-next/keystone/schema'
+import addToCart from './addToCart'
 
 export const extendGraphqlSchema = graphQLSchemaExtension({
   typeDefs: ` 
   type Mutation {
-  addToCart(produceID: ID): CartItem
+  addToCart(productID: ID): CartItem
   }
   `,
   resolvers: {
     Mutation: {
-      addToCart() {
-        // custom code goes here
-
-        console.log('ADD TO CART!')
-      },
+      addToCart,
     },
   },
 })
