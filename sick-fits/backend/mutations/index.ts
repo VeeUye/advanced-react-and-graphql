@@ -4,7 +4,7 @@ import addToCart from './addToCart'
 export const extendGraphqlSchema = graphQLSchemaExtension({
   typeDefs: ` 
   type Mutation {
-  addToCart(productID: ID): CartItem
+  addToCart(productId: ID): CartItem
   }
   `,
   resolvers: {

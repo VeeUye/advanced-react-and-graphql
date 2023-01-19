@@ -11,12 +11,13 @@ export default async function addToCart(
 
   // 1. Query the current user and see if they're signed in
   const sesh = context.session as Session
-  if (sesh.itemId) {
+  if (!sesh.itemId) {
     throw new Error('You must be logged in to do this!')
   }
   // 2. Query the current user's cart
   const allCartItems = await context.lists.CartItem.findMany({
     where: { user: { id: sesh.itemId }, product: { id: productId } },
+    resolveFields: 'id, quantity',
   })
   const [existingCartItem] = allCartItems
   if (existingCartItem) {
