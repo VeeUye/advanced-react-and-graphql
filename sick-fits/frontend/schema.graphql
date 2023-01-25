@@ -88,6 +88,7 @@ type KeystoneMeta {
 }
 
 type Mutation {
+    addToCart(productId: ID): CartItem
     authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult!
     " Create a single CartItem item. "
     createCartItem(data: CartItemCreateInput): CartItem
