@@ -16,17 +16,25 @@ const Dot = styled.div`
 
 const AnimationStyles = styled.span`
   position: relative;
+  .count {
+    position: relative;
+    display: block;
+    transition: transform 0.4s;
+    backface-visibility: hidden;
+  }
   .count-enter {
-    background: green;
+    transform: scale(4) rotateX(0.5turn);
   }
   .count-enter-active {
-    background: yellow;
+    transform: rotateX(0);
   }
   .count-exit {
-    background: blue;
+    top: 0;
+    position: absolute;
+    transform: rotateX(0);
   }
   .count-exit-active {
-    background: pink;
+    transform: scale(4) rotateX(0.5turn);
   }
 `
 export default function CartCount({ count }) {
